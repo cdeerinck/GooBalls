@@ -18,6 +18,8 @@
 		13DC91C322ECE9B90071753C /* GooActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91C222ECE9B90071753C /* GooActivity.swift */; };
 		13DC91C622ECEAB50071753C /* makeLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91C522ECEAB50071753C /* makeLevel.swift */; };
 		13DC91C822ECED860071753C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91C722ECED860071753C /* Constants.swift */; };
+		13DC91CA22ECF60C0071753C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91C922ECF60C0071753C /* GameScene.swift */; };
+		13DC91CC22ECFA920071753C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91CB22ECFA920071753C /* Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		13DC91C222ECE9B90071753C /* GooActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooActivity.swift; sourceTree = "<group>"; };
 		13DC91C522ECEAB50071753C /* makeLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = makeLevel.swift; sourceTree = "<group>"; };
 		13DC91C722ECED860071753C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		13DC91C922ECF60C0071753C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		13DC91CB22ECFA920071753C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +71,11 @@
 			isa = PBXGroup;
 			children = (
 				13DC91C722ECED860071753C /* Constants.swift */,
+				13DC91CB22ECFA920071753C /* Strings.swift */,
 				13DC91C422ECE9C60071753C /* Goo */,
 				13DC91AA22EBFC960071753C /* AppDelegate.swift */,
 				13DC91AC22EBFC960071753C /* ViewController.swift */,
+				13DC91C922ECF60C0071753C /* GameScene.swift */,
 				13DC91AE22EBFC960071753C /* Main.storyboard */,
 				13DC91B122EBFC980071753C /* Assets.xcassets */,
 				13DC91B322EBFC980071753C /* LaunchScreen.storyboard */,
@@ -163,7 +169,9 @@
 			files = (
 				13DC91C122ECE9A80071753C /* GooType.swift in Sources */,
 				13DC91AD22EBFC960071753C /* ViewController.swift in Sources */,
+				13DC91CC22ECFA920071753C /* Strings.swift in Sources */,
 				13DC91C322ECE9B90071753C /* GooActivity.swift in Sources */,
+				13DC91CA22ECF60C0071753C /* GameScene.swift in Sources */,
 				13DC91BF22ECE98B0071753C /* GooBar.swift in Sources */,
 				13DC91BD22EBFCAD0071753C /* GooBalls.swift in Sources */,
 				13DC91C622ECEAB50071753C /* makeLevel.swift in Sources */,

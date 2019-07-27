@@ -15,5 +15,10 @@ let barCategory = 0x0002
 let groundCategory = 0x0004
 
 //Contact Masks
+let gooContactMask = barCategory & groundCategory
+let barContactMask = gooCategory
 
 //Collisions Masks
+let gooCollisionMask = groundCategory
+let barCollisionMask = groundCategory
+let groundCollisionMask = gooCategory & groundCategory

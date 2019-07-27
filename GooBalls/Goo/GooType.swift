@@ -13,9 +13,9 @@ enum GooType {
     case albino
     case ivy
     case fuse
-    case darkBlack
+    case dark
     case water
-    case beuty
+    case beauty
     case ugly
     case bomb
 }
