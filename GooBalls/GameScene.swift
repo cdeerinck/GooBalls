@@ -20,15 +20,12 @@ class GameScene:SKScene, SKPhysicsContactDelegate {
     }
 
     func touchDown(atPoint pos : CGPoint) {
-        goto = pos
     }
 
     func touchMoved(toPoint pos : CGPoint) {
-        goto = pos
     }
 
     func touchUp(atPoint pos : CGPoint) {
-        goto = nil
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -47,4 +44,8 @@ class GameScene:SKScene, SKPhysicsContactDelegate {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
+
+    override func update(_ currentTime: TimeInterval) {
+    }
+    
 }
