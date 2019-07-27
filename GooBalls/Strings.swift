@@ -41,7 +41,7 @@ extension String {
 
     func killWhiteSpace() -> String {
         var str = self
-        while str.starts(with: " ") || str.starts(with:"\n") {
+        while str.starts(with: " ") || str.starts(with:"\n") || str.starts(with:"\t") {
             str = str.after(1)
         }
         return str
