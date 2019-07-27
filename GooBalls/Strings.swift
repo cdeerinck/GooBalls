@@ -39,4 +39,12 @@ extension String {
         return String(self[startIdx..<endIdx])
     }
 
+    func killWhiteSpace() -> String {
+        var str = self
+        while str.starts(with: " ") || str.starts(with:"\n") {
+            str = str.after(1)
+        }
+        return str
+    }
+
 }
