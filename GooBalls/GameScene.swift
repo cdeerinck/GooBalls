@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class GameScene:SKScene, SKPhysicsContactDelegate {
+class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
 
     var selectedGoo:SKNode?
     var tracking = false
@@ -18,9 +18,16 @@ class GameScene:SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         // Get label node from scene and store it for use later
         physicsWorld.contactDelegate = self
+        //scene?.delegate = self
         self.camera = myCamera
         self.addChild(myCamera)
     }
+
+//    override func didSimulatePhysics() {
+//        for gooBall in self.children.filter({$0.name == "Goo"}) as! [GooBall]  {
+//            gooBall.orient()
+//        }
+//    }
 
     func collisionBetween(obj1: SKNode, obj2: SKNode) {
         print("Collision \(obj1.name ?? "") hit \(obj2.name ?? ""))")
@@ -32,11 +39,18 @@ class GameScene:SKScene, SKPhysicsContactDelegate {
 
     func touchDown(atPoint pos : CGPoint) {
         //self.anchorPoint = pos
-        selectedGoo = scene?.atPoint(pos)
-
+        if let gooAtPos = scene?.atPoint(pos) {
+            selectedGoo = gooAtPos
+            while selectedGoo!.parent != nil && selectedGoo!.name != "Goo" {
+                    selectedGoo = selectedGoo!.parent
+            }
+        }
         tracking = false
-        if selectedGoo?.name != "Goo" { selectedGoo = nil }
-        //print("Camera",self.camera)
+        if selectedGoo?.name != "Goo" {
+            print("Touched \(selectedGoo?.name)")
+            selectedGoo = nil
+
+        }
         //myCamera.position = pos
     }
 
