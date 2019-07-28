@@ -29,6 +29,10 @@ class GooBall {
         scene.addChild(node)
     }
 
+    init (scene: SKScene, at:CGPoint, type:GooType = .normal) {
+        let gooColors = gooColor(type: type)
+    }
+
     func feed(amount: CGFloat) {
         self.gooSize += amount
     }
