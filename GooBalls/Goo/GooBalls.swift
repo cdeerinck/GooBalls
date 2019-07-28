@@ -23,6 +23,8 @@ class GooBall {
         node.name = "GooBall"
         node.position = at
         node.setScale(0.05)
+        node.physicsBody = SKPhysicsBody(circleOfRadius: 12.0)
+        node.physicsBody?.affectedByGravity = true
         self.type = type
         scene.addChild(node)
     }

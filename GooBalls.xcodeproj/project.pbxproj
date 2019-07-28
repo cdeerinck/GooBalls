@@ -74,6 +74,7 @@
 				13DC91CB22ECFA920071753C /* Strings.swift */,
 				13DC91C422ECE9C60071753C /* Goo */,
 				13DC91AA22EBFC960071753C /* AppDelegate.swift */,
+				13DC91C522ECEAB50071753C /* makeLevel.swift */,
 				13DC91AC22EBFC960071753C /* ViewController.swift */,
 				13DC91C922ECF60C0071753C /* GameScene.swift */,
 				13DC91AE22EBFC960071753C /* Main.storyboard */,
@@ -91,7 +92,6 @@
 				13DC91BC22EBFCAD0071753C /* GooBalls.swift */,
 				13DC91BE22ECE98B0071753C /* GooBar.swift */,
 				13DC91C022ECE9A80071753C /* GooType.swift */,
-				13DC91C522ECEAB50071753C /* makeLevel.swift */,
 			);
 			path = Goo;
 			sourceTree = "<group>";

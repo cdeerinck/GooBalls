@@ -65,6 +65,7 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
         case "Size":
             let point:CGPoint
             (point,level) = getXY(level)
+            scene.size = CGSize(width: point.x, height: point.y)
             let rect = CGRect(x: 0, y: 0, width: point.x, height: point.y)
             let shape = SKNode()
             shape.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
