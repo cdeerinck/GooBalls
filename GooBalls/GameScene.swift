@@ -33,9 +33,10 @@ class GameScene:SKScene, SKPhysicsContactDelegate {
     func touchDown(atPoint pos : CGPoint) {
         //self.anchorPoint = pos
         selectedGoo = scene?.atPoint(pos)
+
         tracking = false
         if selectedGoo?.name != "Goo" { selectedGoo = nil }
-        print("Camera",self.camera)
+        //print("Camera",self.camera)
         //myCamera.position = pos
     }
 

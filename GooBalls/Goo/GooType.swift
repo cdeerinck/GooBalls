@@ -21,7 +21,7 @@ enum GooType {
     case bomb
 }
 
-func gooColor(type:GooType) -> (ballColor:CGColor, eyeColor:CGColor, pupilColor:CGColor, eyeBorderColor:CGColor) {
+func gooColor(type:GooType) -> (ballColor:UIColor, eyeColor:UIColor, pupilColor:UIColor, eyeBorderColor:UIColor) {
     var pupilColor:UIColor = .black
     var eyeColor:UIColor = .white
     var ballColor:UIColor = .black
@@ -50,6 +50,6 @@ func gooColor(type:GooType) -> (ballColor:CGColor, eyeColor:CGColor, pupilColor:
     case .bomb:
         ballColor = .red
     }
-    return (ballColor.cgColor, eyeColor.cgColor, pupilColor.cgColor, eyeBorderColor.cgColor)
+    return (ballColor, eyeColor, pupilColor, eyeBorderColor)
 
 }
