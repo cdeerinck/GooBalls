@@ -13,6 +13,7 @@ import SpriteKit
 let gooCategory = 0x0001
 let barCategory = 0x0002
 let groundCategory = 0x0004
+let thingsCategory = 0x0008
 
 //Contact Masks
 let gooContactMask = barCategory & groundCategory
