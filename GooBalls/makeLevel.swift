@@ -121,8 +121,8 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
                 points.append(point)
             } while startsWith(pattern: ",", value: level)
             for point in points {
-                let goo = GooBall(in: scene, at: point)
-                goo?.name = gooName
+                let goo = GooBall(scene: scene, at: point)
+                goo.name = gooName
             }
         default:
             let eol = level.firstIndex(of: "\n") ?? level.endIndex

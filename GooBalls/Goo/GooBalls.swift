@@ -9,8 +9,8 @@
 import Foundation
 import SpriteKit
 
-class GooBall {
-    var node:SKNode = SKNode()
+class GooBall:SKNode {
+    //var node:SKNode = SKNode()
     var leftEye:SKShapeNode = SKShapeNode()
     var lefltPupil:SKShapeNode = SKShapeNode()
     var rightEye:SKShapeNode = SKShapeNode()
@@ -39,36 +39,45 @@ class GooBall {
     init (scene: SKScene, at:CGPoint, type:GooType = .normal) {
         
         func eyeSize() -> CGFloat {
-            return CGFloat.random(in: 0.2...0.3)
+            return CGFloat.random(in: 20...30)
         }
         
         func makeEye(parentNode:SKNode, name:String, eyeColor:UIColor, eyeBorderColor:UIColor, pupilColor:UIColor){
             let eye = SKShapeNode(circleOfRadius: eyeSize())
             eye.name = name
-            eye.position = CGPoint(x: (name == "RightEye" ? 1:-1)*0.7, y: 0.7)
+            eye.position = CGPoint(x: (name == "RightEye" ? 1:-1)*70, y: 70)
             eye.fillColor=eyeColor
             eye.strokeColor=eyeBorderColor
-            let pupil = SKShapeNode(circleOfRadius: 0.1)
+            let pupil = SKShapeNode(circleOfRadius: 10)
             pupil.position = CGPoint(x: 0, y: (eye.path?.boundingBox.width)!/4)
             pupil.fillColor = pupilColor
             eye.addChild(pupil)
-            self.node.addChild(eye)
+            parentNode.addChild(eye)
         }
         
+        super.init()
         let gooColors = gooColor(type: type)
-        let shapeNode = SKShapeNode(circleOfRadius: 1)
+        let shapeNode = SKShapeNode(circleOfRadius: 100)
         shapeNode.name = "Goo"
         shapeNode.position = at
         shapeNode.fillColor = gooColors.ballColor
-        shapeNode.physicsBody = SKPhysicsBody(circleOfRadius: 1.0)
+        shapeNode.strokeColor = gooColors.ballColor
+        //shapeNode.lineWidth = 0.001
+        shapeNode.physicsBody = SKPhysicsBody(circleOfRadius: 100)
         shapeNode.physicsBody?.affectedByGravity = true
-        self.node = shapeNode
+        shapeNode.physicsBody?.allowsRotation = false 
+        shapeNode.setScale(0.1)
+        self.addChild(shapeNode)
         self.type = type
-        makeEye(parentNode: node, name: "RightEye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)
-        makeEye(parentNode: node, name: "LeftEye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)
-        scene.addChild(self.node)
+        makeEye(parentNode: shapeNode, name: "RightEye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)
+        makeEye(parentNode: shapeNode, name: "LeftEye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)
+        scene.addChild(self)
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func feed(amount: CGFloat) {
         self.gooSize += amount
     }
