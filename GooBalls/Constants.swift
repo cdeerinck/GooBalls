@@ -23,3 +23,5 @@ let barContactMask = gooCategory
 let gooCollisionMask = groundCategory
 let barCollisionMask = groundCategory
 let groundCollisionMask = gooCategory & groundCategory
+
+var maxSpeed:CGFloat = 0

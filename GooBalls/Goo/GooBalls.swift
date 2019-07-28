@@ -58,14 +58,14 @@ class GooBall:SKNode {
         super.init()
         let gooColors = gooColor(type: type)
         let shapeNode = SKShapeNode(circleOfRadius: 100)
-        shapeNode.name = "Goo"
-        shapeNode.position = at
+        self.name = "Goo"
+        self.position = at
         shapeNode.fillColor = gooColors.ballColor
         shapeNode.strokeColor = gooColors.ballColor
         //shapeNode.lineWidth = 0.001
-        shapeNode.physicsBody = SKPhysicsBody(circleOfRadius: 100)
-        shapeNode.physicsBody?.affectedByGravity = true
-        shapeNode.physicsBody?.allowsRotation = false 
+        self.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.allowsRotation = false
         shapeNode.setScale(0.1)
         self.addChild(shapeNode)
         self.type = type
@@ -85,13 +85,13 @@ class GooBall:SKNode {
     func orient () {
         let speed = hypot(self.physicsBody!.velocity.dx, self.physicsBody!.velocity.dy)
         let angle = atan2(self.physicsBody!.velocity.dy, self .physicsBody!.velocity.dx)
-        self.zRotation = angle + CGFloat.pi/2  // To make an naturally up oriented goo to face right + angle
+        self.zRotation = angle - CGFloat.pi/2  // To make an naturally up oriented goo to face right + angle
         if speed == 0 {
             self.setScale(1)
-        } else {
-            print(speed,angle)
-            self.xScale = max(1,1/speed) //get smaller based on speed.  No smaller than 0.5
-            self.yScale = min(1,1/speed) //get longer based on speed.  No bigger than 1.5
+        }
+        else {
+            self.xScale = max(0.5,1 - (speed/2000)) //get smaller based on speed.  No smaller than 0.5
+            self.yScale = min(1.5,1 + (speed/2000)) //get longer based on speed.  No bigger than 1.5
         }
         self.physicsBody?.allowsRotation = false
     }

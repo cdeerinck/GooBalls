@@ -31,9 +31,9 @@ Size 1000,500
 Lines Box 500,0,500,200,700,200,700,0
 Splines Rope 600,200,400,220,200,170,300,150
 Splines Hill 0,350,50,110,100,80,170,140,400,100,800,300
-Goo Goo 25,25
+Goo Goo 25,25,50,50,75,75,100,100,125,125,150,100,175,75
 """
-//Goo Goo 25,25,50,50,75,75,100,100,125,125,150,100,175,75
+
             makeLevelFrom(in: scene, level1)
             view.presentScene(scene)
             view.ignoresSiblingOrder = true

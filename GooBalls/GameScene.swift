@@ -23,11 +23,11 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
         self.addChild(myCamera)
     }
 
-//    override func didSimulatePhysics() {
-//        for gooBall in self.children.filter({$0.name == "Goo"}) as! [GooBall]  {
-//            gooBall.orient()
-//        }
-//    }
+    override func didSimulatePhysics() {
+        for gooBall in self.children.filter({$0.name == "Goo"}) as! [GooBall]  {
+            gooBall.orient()
+        }
+    }
 
     func collisionBetween(obj1: SKNode, obj2: SKNode) {
         print("Collision \(obj1.name ?? "") hit \(obj2.name ?? ""))")
