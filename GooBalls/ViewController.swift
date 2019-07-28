@@ -17,10 +17,22 @@ class ViewController: UIViewController {
         if let view = self.view as! SKView? {
             let scene = GameScene()
             scene.size = view.frame.size //CGSize(width: 100, height: 100)
-            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             //if let scene = SKScene(fileNamed: "GameScene") {
             // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFill
+            scene.view?.showsFPS = true
+            scene.view?.showsNodeCount = true
+            scene.view?.showsPhysics = true
+            scene.scaleMode = .resizeFill
+            scene.setScale(10.0)
+let level1 = """
+Size 1000,500
+Lines Box 500,0,500,200,700,200,700,0
+Splines Rope 600,200,400,400,400,50
+Goo normal 25,25,50,50,75,75,100,100,125,125,150,100,175,75
+"""
+            makeLevelFrom(in: scene, level1)
+            view.presentScene(scene)
+            view.ignoresSiblingOrder = true
         }
     }
 

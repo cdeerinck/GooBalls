@@ -11,6 +11,11 @@ import SpriteKit
 
 class GameScene:SKScene, SKPhysicsContactDelegate {
 
+    override func didMove(to view: SKView) {
+        // Get label node from scene and store it for use later
+        physicsWorld.contactDelegate = self
+    }
+
     func collisionBetween(obj1: SKNode, obj2: SKNode) {
         print("Collision \(obj1.name ?? "") hit \(obj2.name ?? ""))")
     }
@@ -20,6 +25,8 @@ class GameScene:SKScene, SKPhysicsContactDelegate {
     }
 
     func touchDown(atPoint pos : CGPoint) {
+        //self.anchorPoint = pos
+        print(pos)
     }
 
     func touchMoved(toPoint pos : CGPoint) {
@@ -47,5 +54,5 @@ class GameScene:SKScene, SKPhysicsContactDelegate {
 
     override func update(_ currentTime: TimeInterval) {
     }
-    
+
 }
