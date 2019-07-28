@@ -122,7 +122,7 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
             } while startsWith(pattern: ",", value: level)
             for point in points {
                 let goo = GooBall(in: scene, at: point)
-                goo?.node.name = gooName
+                goo?.name = gooName
             }
         default:
             let eol = level.firstIndex(of: "\n") ?? level.endIndex
