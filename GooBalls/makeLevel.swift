@@ -60,7 +60,7 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
     while !level.isEmpty {
         let command:String
         (command, level) = getFirstWord(from: level)
-        print(command)
+        //print(command)
         switch command {
         case "Size":
             let point:CGPoint
@@ -110,9 +110,10 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
             scene.addChild(node)
         case "Goo":
             var points:[CGPoint] = []
-            var gooName:String
+            var gooTypeName:String
             var point:CGPoint
-            (gooName,level) = getFirstWord(from: level)
+            (gooTypeName,level) = getFirstWord(from: level)
+            let gooType = stringToType(gooTypeName)
             repeat {
                 if startsWith(pattern: ",", value: level) {
                     level = level.after(1)
@@ -121,8 +122,8 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
                 points.append(point)
             } while startsWith(pattern: ",", value: level)
             for point in points {
-                let goo = GooBall(scene: scene, at: point)
-                goo.name = gooName
+                let goo = GooBall(scene: scene, at: point, type:gooType)
+                goo.name = "Goo"
             }
         default:
             let eol = level.firstIndex(of: "\n") ?? level.endIndex

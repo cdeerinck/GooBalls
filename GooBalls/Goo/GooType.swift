@@ -41,8 +41,7 @@ func gooColor(type:GooType) -> (ballColor:UIColor, eyeColor:UIColor, pupilColor:
     case .dark:
         ballColor = .black
     case .water:
-        ballColor = .cyan
-        ballColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
+        ballColor = .blue
     case .beauty:
         ballColor = #colorLiteral(red: 1, green: 0.6, blue: 0.8902, alpha: 1) /* #ff99e3 */
     case .ugly:
@@ -52,4 +51,29 @@ func gooColor(type:GooType) -> (ballColor:UIColor, eyeColor:UIColor, pupilColor:
     }
     return (ballColor, eyeColor, pupilColor, eyeBorderColor)
 
+}
+
+func stringToType(_ value:String) -> GooType {
+    switch value {
+    case "Normal":
+        return .normal
+    case "Albino":
+        return .albino
+    case "Ivy":
+        return .ivy
+    case "Fuse":
+        return .fuse
+    case "Dark":
+        return .dark
+    case "Water":
+        return .water
+    case "Beauty":
+        return .beauty
+    case "Ugly":
+        return .ugly
+    case "Bomb":
+        return .bomb
+    default:
+        return .normal
+    }
 }

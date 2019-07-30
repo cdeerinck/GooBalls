@@ -37,24 +37,34 @@ class GooBall:SKNode {
     }
 
     init (scene: SKScene, at:CGPoint, type:GooType = .normal) {
+
+        let breatheAction: SKAction = {
+            let time = Double.random(in: 0.4...0.5)
+            let grow = SKAction.scale(to: 0.12, duration: time)
+            grow.timingMode = .easeInEaseOut
+            let shrink = SKAction.scale(to: 0.10, duration: time)
+            shrink.timingMode = .easeInEaseOut
+            let sequence = SKAction.sequence([grow, shrink])
+            return SKAction.repeatForever(sequence)
+        }()
         
         func eyeSize() -> CGFloat {
-            return CGFloat.random(in: 20...30)
+            return CGFloat.random(in: 20...40)
         }
         
         func makeEye(parentNode:SKNode, name:String, eyeColor:UIColor, eyeBorderColor:UIColor, pupilColor:UIColor){
             let eye = SKShapeNode(circleOfRadius: eyeSize())
             eye.name = name
-            eye.position = CGPoint(x: (name == "RightEye" ? 1:-1)*70, y: 70)
+            eye.position = CGPoint(x: (name == "Right Eye" ? 1:-1)*70, y: 70)
             eye.fillColor=eyeColor
             eye.strokeColor=eyeBorderColor
             let pupil = SKShapeNode(circleOfRadius: 10)
-            pupil.position = CGPoint(x: 0, y: (eye.path?.boundingBox.width)!/4)
+            pupil.position = CGPoint(x: 0, y: (eye.path?.boundingBox.width)!/5)
             pupil.fillColor = pupilColor
             eye.addChild(pupil)
             parentNode.addChild(eye)
         }
-        
+    
         super.init()
         let gooColors = gooColor(type: type)
         let shapeNode = SKShapeNode(circleOfRadius: 100)
@@ -66,13 +76,17 @@ class GooBall:SKNode {
         self.physicsBody = SKPhysicsBody(circleOfRadius: 10)
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
+        self.physicsBody?.friction = 0.03
         shapeNode.setScale(0.1)
+        shapeNode.run(breatheAction)
         self.addChild(shapeNode)
         self.type = type
-        makeEye(parentNode: shapeNode, name: "RightEye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)
-        makeEye(parentNode: shapeNode, name: "LeftEye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)
+        makeEye(parentNode: shapeNode, name: "Right Eye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)
+        makeEye(parentNode: shapeNode, name: "Left Eye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)
         scene.addChild(self)
     }
+
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -82,10 +96,24 @@ class GooBall:SKNode {
         self.gooSize += amount
     }
 
+    func openEyes(_ open:Bool = true) {
+        let sprite = self.children.first
+        sprite?.childNode(withName: "Left Eye")?.isHidden = !open
+        sprite?.childNode(withName: "Right Eye")?.isHidden = !open
+    }
+
     func orient () {
         let speed = hypot(self.physicsBody!.velocity.dx, self.physicsBody!.velocity.dy)
-        let angle = atan2(self.physicsBody!.velocity.dy, self .physicsBody!.velocity.dx)
-        self.zRotation = angle - CGFloat.pi/2  // To make an naturally up oriented goo to face right + angle
+        if speed > 500 {
+            openEyes(false)
+        } else {
+            if Int.random(in: 0...100) == 0 { openEyes(true) }
+            if Int.random(in: 0...100) == 0 { openEyes(false) }
+        }
+        if speed > 20 {
+            let angle = atan2(self.physicsBody!.velocity.dy, self .physicsBody!.velocity.dx)
+            self.zRotation = angle - CGFloat.pi/2  // To make an naturally up oriented goo to face right + angle
+        }
         if speed == 0 {
             self.setScale(1)
         }

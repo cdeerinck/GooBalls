@@ -16,6 +16,8 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     var myCamera:SKCameraNode = SKCameraNode()
 
     override func didMove(to view: SKView) {
+        self.scaleMode = .aspectFill
+        self.setScale(40.0)
         // Get label node from scene and store it for use later
         physicsWorld.contactDelegate = self
         //scene?.delegate = self
@@ -47,7 +49,7 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
         }
         tracking = false
         if selectedGoo?.name != "Goo" {
-            print("Touched \(selectedGoo?.name)")
+            print("Touched \(selectedGoo?.name ?? "unknown") at \(pos)")
             selectedGoo = nil
 
         }
@@ -85,6 +87,7 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
 
     override func update(_ currentTime: TimeInterval) {
         if tracking && selectedGoo != nil { myCamera.position = selectedGoo!.position }
+        //myCamera.setScale(myCamera.xScale * 0.999)
     }
 
 }

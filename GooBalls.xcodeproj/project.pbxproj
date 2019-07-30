@@ -88,10 +88,10 @@
 		13DC91C422ECE9C60071753C /* Goo */ = {
 			isa = PBXGroup;
 			children = (
+				13DC91C022ECE9A80071753C /* GooType.swift */,
 				13DC91C222ECE9B90071753C /* GooActivity.swift */,
 				13DC91BC22EBFCAD0071753C /* GooBalls.swift */,
 				13DC91BE22ECE98B0071753C /* GooBar.swift */,
-				13DC91C022ECE9A80071753C /* GooType.swift */,
 			);
 			path = Goo;
 			sourceTree = "<group>";
