@@ -20,9 +20,23 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="31f-VW-osr" appends="YES" id="Aj7-l2-DYE"/>
+                            <outletCollection property="gestureRecognizers" destination="bYJ-jM-5Lu" appends="YES" id="I2g-bn-Bgs"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="31f-VW-osr">
+                    <connections>
+                        <action selector="pinchGesture:" destination="BYZ-38-t0r" id="ayf-As-RAX"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="bYJ-jM-5Lu">
+                    <connections>
+                        <action selector="panGesture:" destination="BYZ-38-t0r" id="xrR-O5-gEl"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
         </scene>
     </scenes>

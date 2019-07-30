@@ -14,7 +14,11 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     var selectedGoo:SKNode?
     var tracking = false
     var myCamera:SKCameraNode = SKCameraNode()
-
+    var previousCameraScale = CGFloat()
+    var previousGooPosition = CGPoint()
+    var previousCameraPoint = CGPoint()
+    let minCameraScale:CGFloat = 0.30270245331538354
+    let maxCameraScale:CGFloat = 5.069801958643164
     override func didMove(to view: SKView) {
         self.scaleMode = .aspectFill
         self.setScale(40.0)
@@ -24,6 +28,7 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
         self.camera = myCamera
         self.addChild(myCamera)
     }
+    
 
     override func didSimulatePhysics() {
         for gooBall in self.children.filter({$0.name == "Goo"}) as! [GooBall]  {
@@ -57,16 +62,65 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     }
 
     func touchMoved(toPoint pos : CGPoint) {
-        selectedGoo?.position = pos
-        selectedGoo?.physicsBody?.affectedByGravity = false
-
     }
 
     func touchUp(atPoint pos : CGPoint) {
-        selectedGoo?.position = pos
-        selectedGoo?.physicsBody?.affectedByGravity = true
-        myCamera.position = pos
-        tracking = true
+    }
+    
+    func scaleCamera(_ sender: UIPinchGestureRecognizer) {
+        guard let camera = self.camera else {return}
+        if sender.state == .began {
+            previousCameraScale = camera.xScale
+        }
+        let requestedCameraScale = previousCameraScale*1/sender.scale
+        // print(previousCameraScale*1/sender.scale)
+        
+        if requestedCameraScale < maxCameraScale && requestedCameraScale > minCameraScale {
+            camera.setScale(requestedCameraScale)
+           // print("max:\(maxCameraScale) min:\(minCameraScale) actual:\(requestedCameraScale)" )
+        } else {return }
+    }
+    
+    func handlePan(_ sender: UIPanGestureRecognizer) {
+        
+        guard let camera = self.camera else {return}
+        switch sender.state {
+        case .began:
+            print(sender.location(ofTouch: 0, in: self.view))
+            if let gooAtPos = scene?.atPoint(self.convertPoint(fromView: sender.location(in: self.view))) {
+                selectedGoo = gooAtPos
+                while selectedGoo!.parent != nil && selectedGoo!.name != "Goo" {
+                    selectedGoo = selectedGoo!.parent
+                }
+                if selectedGoo?.name == "Goo"{
+                    previousGooPosition = selectedGoo!.position
+                } else {
+                    selectedGoo = nil
+                    previousCameraPoint = camera.position
+                }
+            }
+        case .cancelled, .failed:
+            if selectedGoo == nil {
+                camera.position = previousCameraPoint
+            } else {
+                selectedGoo?.position = previousGooPosition
+            }
+        case .changed, .ended:
+            let offset = sender.translation(in: sender.view)
+            print(offset)
+            if selectedGoo == nil {
+                camera.position = CGPoint(x: previousCameraPoint.x + (offset.x * camera.xScale) * -1, y: previousCameraPoint.y + (offset.y * camera.yScale))
+            } else {
+                selectedGoo?.position = CGPoint(x: previousCameraPoint.x + (offset.x * camera.xScale), y: previousCameraPoint.y + (offset.y * camera.yScale) * -1)
+                selectedGoo?.physicsBody?.affectedByGravity = (sender.state == .ended)
+            }
+            if sender.state == .ended {
+                previousGooPosition = CGPoint()
+                previousCameraPoint = CGPoint()
+            }
+        default:
+            print("Unhandled pan state:\(sender.state)")
+        }
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -86,8 +140,10 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     }
 
     override func update(_ currentTime: TimeInterval) {
-        if tracking && selectedGoo != nil { myCamera.position = selectedGoo!.position }
-        //myCamera.setScale(myCamera.xScale * 0.999)
+        if tracking && selectedGoo != nil {
+            myCamera.position = selectedGoo!.position
+            
+        }
     }
 
 }
