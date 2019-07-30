@@ -20,11 +20,8 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     let minCameraScale:CGFloat = 0.30270245331538354
     let maxCameraScale:CGFloat = 5.069801958643164
     override func didMove(to view: SKView) {
-        self.scaleMode = .aspectFill
-        self.setScale(40.0)
-        // Get label node from scene and store it for use later
         physicsWorld.contactDelegate = self
-        //scene?.delegate = self
+        scene?.delegate = self
         self.camera = myCamera
         self.addChild(myCamera)
     }
@@ -84,9 +81,13 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     func handlePan(_ sender: UIPanGestureRecognizer) {
         
         guard let camera = self.camera else {return}
+        let at = self.convertPoint(fromView: sender.location(in: self.view))
+        let off = sender.translation(in: sender.view)
+        let off2 = self.convertPoint(fromView: off)
+        print("at=\(at) off=\(off) scale=\(self.camera?.xScale) off2=\(off2)")
         switch sender.state {
         case .began:
-            print(sender.location(ofTouch: 0, in: self.view))
+            //print(sender.location(ofTouch: 0, in: self.view))
             if let gooAtPos = scene?.atPoint(self.convertPoint(fromView: sender.location(in: self.view))) {
                 selectedGoo = gooAtPos
                 while selectedGoo!.parent != nil && selectedGoo!.name != "Goo" {
@@ -107,16 +108,12 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
             }
         case .changed, .ended:
             let offset = sender.translation(in: sender.view)
-            print(offset)
+            //print(offset)
             if selectedGoo == nil {
                 camera.position = CGPoint(x: previousCameraPoint.x + (offset.x * camera.xScale) * -1, y: previousCameraPoint.y + (offset.y * camera.yScale))
             } else {
-                selectedGoo?.position = CGPoint(x: previousCameraPoint.x + (offset.x * camera.xScale), y: previousCameraPoint.y + (offset.y * camera.yScale) * -1)
+                selectedGoo?.position = CGPoint(x: previousGooPosition.x + (offset.x * camera.xScale), y: previousGooPosition.y + (offset.y * camera.yScale) * -1)
                 selectedGoo?.physicsBody?.affectedByGravity = (sender.state == .ended)
-            }
-            if sender.state == .ended {
-                previousGooPosition = CGPoint()
-                previousCameraPoint = CGPoint()
             }
         default:
             print("Unhandled pan state:\(sender.state)")
@@ -142,7 +139,6 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     override func update(_ currentTime: TimeInterval) {
         if tracking && selectedGoo != nil {
             myCamera.position = selectedGoo!.position
-            
         }
     }
 
