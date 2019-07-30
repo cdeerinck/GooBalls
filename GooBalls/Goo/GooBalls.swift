@@ -67,6 +67,7 @@ class GooBall:SKNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         shapeNode.setScale(0.1)
+        self.physicsBody?.friction = 0.05
         self.addChild(shapeNode)
         self.type = type
         makeEye(parentNode: shapeNode, name: "RightEye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)

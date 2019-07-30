@@ -10,12 +10,12 @@ import UIKit
 import SpriteKit
 
 class ViewController: UIViewController {
+    let scene = GameScene()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         if let view = self.view as! SKView? {
-            let scene = GameScene()
             scene.size = view.frame.size //CGSize(width: 100, height: 100)
             scene.setScale(20.0)
             print(scene.anchorPoint) //
@@ -40,6 +40,11 @@ Goo Goo 25,25,50,50,75,75,100,100,125,125,150,100,175,75
         }
     }
 
-
+    
+    @IBAction func panGesture(_ sender: UIPanGestureRecognizer) {
+        scene.handlePan(sender)
+    }
+    @IBAction func pinchGesture(_ sender: UIPinchGestureRecognizer) {
+        scene.scaleCamera(sender)
 }
-
+}
