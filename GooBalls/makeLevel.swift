@@ -135,6 +135,9 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
                     level = level.after(1)
                 }
                 (point1,level) = getXY(level)
+                if startsWith(pattern: ",", value: level) {
+                    level = level.after(1)
+                }
                 (point2,level) = getXY(level)
                 points.append((point1,point2))
             } while startsWith(pattern: ",", value: level)
@@ -143,7 +146,8 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
                 let goo1 = findParentGoo(nodes[0])
                 nodes = scene.nodes(at: point.1)
                 let goo2 = findParentGoo(nodes[0])
-                var bar = GooBar(scene: scene, goo1, goo2)
+                let bar = GooBar(scene: scene, goo1 as! GooBall, goo2 as! GooBall)
+                
             }
         default:
             let eol = level.firstIndex(of: "\n") ?? level.endIndex
