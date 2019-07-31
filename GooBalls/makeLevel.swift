@@ -125,6 +125,26 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
                 let goo = GooBall(scene: scene, at: point, type:gooType)
                 goo.name = "Goo"
             }
+        case "Bar":
+            var point1:CGPoint
+            var point2:CGPoint
+            var points:[(CGPoint,CGPoint)] = []
+            var nodes:[SKNode]
+            repeat {
+                if startsWith(pattern: ",", value: level) {
+                    level = level.after(1)
+                }
+                (point1,level) = getXY(level)
+                (point2,level) = getXY(level)
+                points.append((point1,point2))
+            } while startsWith(pattern: ",", value: level)
+            for point in points {
+                nodes  = scene.nodes(at: point.0)
+                let goo1 = findParentGoo(nodes[0])
+                nodes = scene.nodes(at: point.1)
+                let goo2 = findParentGoo(nodes[0])
+                var bar = GooBar(scene: scene, goo1, goo2)
+            }
         default:
             let eol = level.firstIndex(of: "\n") ?? level.endIndex
             level = String(level[..<eol])

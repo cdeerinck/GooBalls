@@ -44,10 +44,7 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     func touchDown(atPoint pos : CGPoint) {
         //self.anchorPoint = pos
         if let gooAtPos = scene?.atPoint(pos) {
-            selectedGoo = gooAtPos
-            while selectedGoo!.parent != nil && selectedGoo!.name != "Goo" {
-                    selectedGoo = selectedGoo!.parent
-            }
+            selectedGoo = findParentGoo(gooAtPos)
         }
         tracking = false
         if selectedGoo?.name != "Goo" {
@@ -89,10 +86,7 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
         case .began:
             //print(sender.location(ofTouch: 0, in: self.view))
             if let gooAtPos = scene?.atPoint(self.convertPoint(fromView: sender.location(in: self.view))) {
-                selectedGoo = gooAtPos
-                while selectedGoo!.parent != nil && selectedGoo!.name != "Goo" {
-                    selectedGoo = selectedGoo!.parent
-                }
+                selectedGoo = findParentGoo(gooAtPos)
                 if selectedGoo?.name == "Goo"{
                     previousGooPosition = selectedGoo!.position
                 } else {
