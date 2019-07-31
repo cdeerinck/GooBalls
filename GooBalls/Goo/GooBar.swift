@@ -8,14 +8,27 @@
 
 import Foundation
 import SpriteKit
+import CoreGraphics
 
 class GooBar {
     var oneEnd:GooBall
     var otherEnd:GooBall
-    var node:SKNode = SKNode()
+    var node:SKShapeNode
 
-    init (_ oneEnd:GooBall, _ otherEnd:GooBall) {
+    init (scene: SKScene, _ oneEnd:GooBall, _ otherEnd:GooBall) {
         self.oneEnd = oneEnd
         self.otherEnd = otherEnd
+
+        let delta = (otherEnd.position - oneEnd.position)
+        let barPath:CGMutablePath = CGMutablePath()
+        barPath.move(to: -delta)
+        barPath.addLine(to: delta)
+
+        node = SKShapeNode(path: barPath, centered: true)
+        node.position = (oneEnd.position + otherEnd.position) / 2
+        node.strokeColor = .red
+        node.physicsBody = SKPhysicsBody(polygonFrom: barPath)
+        let barJoint = SKPhysicsJointSpring.joint(withBodyA:oneEnd.physicsBody!, bodyB:otherEnd.physicsBody!, anchorA: oneEnd.position, anchorB: otherEnd.position)
+        scene.physicsWorld.add(barJoint)
     }
 }

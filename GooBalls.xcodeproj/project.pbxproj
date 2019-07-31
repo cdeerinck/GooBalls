@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13356B8F22F119240067F68B /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13356B8E22F119240067F68B /* CGPoint.swift */; };
+		13356B9122F119770067F68B /* lerp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13356B9022F119770067F68B /* lerp.swift */; };
 		13DC91AB22EBFC960071753C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91AA22EBFC960071753C /* AppDelegate.swift */; };
 		13DC91AD22EBFC960071753C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91AC22EBFC960071753C /* ViewController.swift */; };
 		13DC91B022EBFC960071753C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13DC91AE22EBFC960071753C /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13356B8E22F119240067F68B /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		13356B9022F119770067F68B /* lerp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lerp.swift; sourceTree = "<group>"; };
 		13DC91A722EBFC960071753C /* GooBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GooBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13DC91AA22EBFC960071753C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13DC91AC22EBFC960071753C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 			children = (
 				13DC91C722ECED860071753C /* Constants.swift */,
 				13DC91CB22ECFA920071753C /* Strings.swift */,
+				13356B8E22F119240067F68B /* CGPoint.swift */,
+				13356B9022F119770067F68B /* lerp.swift */,
 				13DC91C422ECE9C60071753C /* Goo */,
 				13DC91AA22EBFC960071753C /* AppDelegate.swift */,
 				13DC91C522ECEAB50071753C /* makeLevel.swift */,
@@ -170,9 +176,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13356B8F22F119240067F68B /* CGPoint.swift in Sources */,
 				13DC91C122ECE9A80071753C /* GooType.swift in Sources */,
 				13DC91AD22EBFC960071753C /* ViewController.swift in Sources */,
 				13DC91CC22ECFA920071753C /* Strings.swift in Sources */,
+				13356B9122F119770067F68B /* lerp.swift in Sources */,
 				13DC91C322ECE9B90071753C /* GooActivity.swift in Sources */,
 				13DC91CA22ECF60C0071753C /* GameScene.swift in Sources */,
 				13DC91BF22ECE98B0071753C /* GooBar.swift in Sources */,
