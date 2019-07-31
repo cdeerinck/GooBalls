@@ -78,10 +78,10 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     func handlePan(_ sender: UIPanGestureRecognizer) {
         
         guard let camera = self.camera else {return}
-        let at = self.convertPoint(fromView: sender.location(in: self.view))
-        let off = sender.translation(in: sender.view)
-        let off2 = self.convertPoint(fromView: off)
-        print("at=\(at) off=\(off) scale=\(self.camera?.xScale) off2=\(off2)")
+        //let at = self.convertPoint(fromView: sender.location(in: self.view))
+        //let off = sender.translation(in: sender.view)
+        //let off2 = self.convertPoint(fromView: off)
+        //print("at=\(at) off=\(off) scale=\(self.camera?.xScale) off2=\(off2)")
         switch sender.state {
         case .began:
             //print(sender.location(ofTouch: 0, in: self.view))
