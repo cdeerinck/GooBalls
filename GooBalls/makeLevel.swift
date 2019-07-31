@@ -87,6 +87,7 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
             spline.physicsBody = SKPhysicsBody(edgeChainFrom: spline.path!)
             spline.name = splineName
             spline.strokeColor = .red
+            spline.isUserInteractionEnabled = false
             scene.addChild(spline)
             
         case "Lines":
@@ -107,6 +108,7 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
             node.name = lineName
             node.strokeColor = .green
             node.physicsBody = SKPhysicsBody(edgeChainFrom: path)
+            node.isUserInteractionEnabled = false
             scene.addChild(node)
         case "Goo":
             var points:[CGPoint] = []
@@ -147,7 +149,6 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
                 nodes = scene.nodes(at: point.1)
                 let goo2 = findParentGoo(nodes[0])
                 let bar = GooBar(scene: scene, goo1 as! GooBall, goo2 as! GooBall)
-                
             }
         default:
             let eol = level.firstIndex(of: "\n") ?? level.endIndex

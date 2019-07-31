@@ -16,7 +16,28 @@ class GooBall:SKNode {
     var rightEye:SKShapeNode = SKShapeNode()
     var rightPupil:SKShapeNode = SKShapeNode()
     var type:GooType = .normal
-    var activity:GooActivity = .waiting
+    var activity:GooActivity = .waiting {
+        didSet {
+            switch self.activity {
+            case .waiting:
+                self.isUserInteractionEnabled = true
+            case .sleeping:
+                self.isUserInteractionEnabled = false
+            case .beingDragged:
+                self.isUserInteractionEnabled = true
+            case .fixed:
+                self.isUserInteractionEnabled = false
+            case .walkingOn:
+                self.isUserInteractionEnabled = true
+            case .leaving:
+                self.isUserInteractionEnabled = false
+            case .left:
+                self.isUserInteractionEnabled = false
+            default:
+                self.isUserInteractionEnabled = self.isUserInteractionEnabled
+            }
+        }
+    }
     var boundTo:[GooBall] = []
     var bars:[GooBar] = []
     var interestedIn: CGPoint?
@@ -58,10 +79,13 @@ class GooBall:SKNode {
             eye.position = CGPoint(x: (name == "Right Eye" ? 1:-1)*70, y: 70)
             eye.fillColor=eyeColor
             eye.strokeColor=eyeBorderColor
+            eye.isUserInteractionEnabled = false
             let pupil = SKShapeNode(circleOfRadius: 10)
             pupil.position = CGPoint(x: 0, y: (eye.path?.boundingBox.width)!/5)
             pupil.fillColor = pupilColor
+            pupil.isUserInteractionEnabled = false
             eye.addChild(pupil)
+
             parentNode.addChild(eye)
         }
     

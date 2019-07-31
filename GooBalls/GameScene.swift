@@ -31,6 +31,9 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
         for gooBall in self.children.filter({$0.name == "Goo"}) as! [GooBall]  {
             gooBall.orient()
         }
+        for gooBar in self.children.filter({$0.name == "Bar"}) as! [GooBar]  {
+            gooBar.orient()
+        }
     }
 
     func collisionBetween(obj1: SKNode, obj2: SKNode) {

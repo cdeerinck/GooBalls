@@ -10,6 +10,8 @@ import Foundation
 import SpriteKit
 
 enum GooActivity {
+    case sleeping
+    case beingDragged
     case waiting
     case fixed
     case walkingOn (onNode:SKNode)
