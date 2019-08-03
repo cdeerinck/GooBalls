@@ -49,5 +49,7 @@ class GooBar:SKNode {
     func orient() {
         self.position = ((oneEnd.physicsBody?.node?.position)! + (otherEnd.physicsBody?.node?.position)!) / 2
         self.zRotation = atan2((oneEnd.physicsBody?.node?.position.y)! - (otherEnd.physicsBody?.node?.position.y)!, (oneEnd.physicsBody?.node?.position.x)!  - (otherEnd.physicsBody?.node?.position.x)!)
+        oneEnd.childNode(withName: "Shape")?.removeAllActions()
+        otherEnd.childNode(withName: "Shape")?.removeAllActions()
     }
 }

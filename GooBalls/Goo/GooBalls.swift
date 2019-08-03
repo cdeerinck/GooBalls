@@ -16,25 +16,32 @@ class GooBall:SKNode {
     var rightEye:SKShapeNode = SKShapeNode()
     var rightPupil:SKShapeNode = SKShapeNode()
     var type:GooType = .normal
-    var activity:GooActivity = .waiting {
+    var activity:GooActivity = .free {
         didSet {
             switch self.activity {
-            case .waiting:
+            case .free:
                 self.isUserInteractionEnabled = true
+                self.physicsBody?.affectedByGravity = true
             case .sleeping:
                 self.isUserInteractionEnabled = false
+                self.physicsBody?.affectedByGravity = true
             case .beingDragged:
                 self.isUserInteractionEnabled = true
+                self.physicsBody?.affectedByGravity = false
             case .fixed:
                 self.isUserInteractionEnabled = false
+                self.physicsBody?.affectedByGravity = true
             case .walkingOn:
                 self.isUserInteractionEnabled = true
+                self.physicsBody?.affectedByGravity = false
             case .leaving:
                 self.isUserInteractionEnabled = false
+                self.physicsBody?.affectedByGravity = false
             case .left:
                 self.isUserInteractionEnabled = false
-            default:
-                self.isUserInteractionEnabled = self.isUserInteractionEnabled
+                self.physicsBody?.affectedByGravity = false
+//            default:
+//                self.isUserInteractionEnabled = self.isUserInteractionEnabled
             }
         }
     }
@@ -47,6 +54,7 @@ class GooBall:SKNode {
         super.init()
         let sprite = SKSpriteNode(imageNamed: "GooBall1") //(fileNamed: "GooBall1")!
         sprite.setScale(0.05)
+        sprite.isUserInteractionEnabled = false
         self.addChild(sprite)
         self.name = "Goo"
         self.position = at
@@ -103,6 +111,7 @@ class GooBall:SKNode {
         self.physicsBody?.friction = 0.03
         shapeNode.setScale(0.1)
         shapeNode.run(breatheAction)
+        shapeNode.name = "Shape"
         self.addChild(shapeNode)
         self.type = type
         makeEye(parentNode: shapeNode, name: "Right Eye", eyeColor: gooColors.eyeColor, eyeBorderColor: gooColors.eyeBorderColor, pupilColor: gooColors.pupilColor)

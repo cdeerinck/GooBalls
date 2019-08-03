@@ -11,17 +11,21 @@ import SpriteKit
 
 class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
 
-    var selectedGoo:SKNode?
+    var selectedGoo:GooBall?
     var tracking = false
     var myCamera:SKCameraNode = SKCameraNode()
     var previousCameraScale = CGFloat()
     var previousGooPosition = CGPoint()
     var previousCameraPoint = CGPoint()
-    let minCameraScale:CGFloat = 0.30270245331538354
-    let maxCameraScale:CGFloat = 5.069801958643164
+    let minCameraScale:CGFloat = 0.3
+    let maxCameraScale:CGFloat = 5.0
+
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         scene?.delegate = self
+        self.view?.showsFPS = true
+        self.view?.showsNodeCount = true
+        self.view?.showsPhysics = true
         self.camera = myCamera
         self.addChild(myCamera)
     }
@@ -47,7 +51,7 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     func touchDown(atPoint pos : CGPoint) {
         //self.anchorPoint = pos
         if let gooAtPos = scene?.atPoint(pos) {
-            selectedGoo = findParentGoo(gooAtPos)
+            selectedGoo = findParentGoo(gooAtPos) as? GooBall
         }
         tracking = false
         if selectedGoo?.name != "Goo" {
@@ -81,17 +85,15 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     func handlePan(_ sender: UIPanGestureRecognizer) {
         
         guard let camera = self.camera else {return}
-        //let at = self.convertPoint(fromView: sender.location(in: self.view))
-        //let off = sender.translation(in: sender.view)
-        //let off2 = self.convertPoint(fromView: off)
-        //print("at=\(at) off=\(off) scale=\(self.camera?.xScale) off2=\(off2)")
+        let offset = sender.translation(in: self.view) * (self.frame.width / (sender.view?.frame.width)!)
         switch sender.state {
         case .began:
             //print(sender.location(ofTouch: 0, in: self.view))
             if let gooAtPos = scene?.atPoint(self.convertPoint(fromView: sender.location(in: self.view))) {
-                selectedGoo = findParentGoo(gooAtPos)
+                selectedGoo = findParentGoo(gooAtPos) as? GooBall
                 if selectedGoo?.name == "Goo"{
-                    previousGooPosition = selectedGoo!.position
+                    previousGooPosition = (selectedGoo!.physicsBody?.node!.position)!
+                    selectedGoo?.activity = .beingDragged
                 } else {
                     selectedGoo = nil
                     previousCameraPoint = camera.position
@@ -104,13 +106,15 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
                 selectedGoo?.position = previousGooPosition
             }
         case .changed, .ended:
-            let offset = sender.translation(in: sender.view)
-            //print(offset)
             if selectedGoo == nil {
                 camera.position = CGPoint(x: previousCameraPoint.x + (offset.x * camera.xScale) * -1, y: previousCameraPoint.y + (offset.y * camera.yScale))
             } else {
-                selectedGoo?.position = CGPoint(x: previousGooPosition.x + (offset.x * camera.xScale), y: previousGooPosition.y + (offset.y * camera.yScale) * -1)
-                selectedGoo?.physicsBody?.affectedByGravity = (sender.state == .ended)
+                //selectedGoo?.position = CGPoint(x: previousGooPosition.x + (offset.x * camera.xScale), y: previousGooPosition.y + (offset.y * camera.yScale) * -1)
+                selectedGoo?.physicsBody?.node?.position.x = previousGooPosition.x + (offset.x * camera.xScale)
+                selectedGoo?.physicsBody?.node?.position.y = previousGooPosition.y - (offset.y * camera.yScale)
+                if sender.state == .ended {
+                    selectedGoo?.activity = .free
+                }
             }
         default:
             print("Unhandled pan state:\(sender.state)")

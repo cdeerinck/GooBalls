@@ -148,7 +148,7 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
                 let goo1 = findParentGoo(nodes[0])
                 nodes = scene.nodes(at: point.1)
                 let goo2 = findParentGoo(nodes[0])
-                let bar = GooBar(scene: scene, goo1 as! GooBall, goo2 as! GooBall)
+                let _ = GooBar(scene: scene, goo1 as! GooBall, goo2 as! GooBall)
             }
         default:
             let eol = level.firstIndex(of: "\n") ?? level.endIndex

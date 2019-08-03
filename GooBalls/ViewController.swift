@@ -20,11 +20,16 @@ class ViewController: UIViewController {
             print(scene.anchorPoint) //
             scene.anchorPoint = CGPoint(x: 0.1,y: 0.2)
             // Set the scale mode to scale to fit the window
-            scene.view?.showsFPS = true
-            scene.view?.showsNodeCount = true
-            scene.view?.showsPhysics = true
+
 
 let level1 = """
+Size 500,250
+Lines Ground 0,0,500,0
+Goo Normal 25,25,300,5,350,5
+Bar 300,5,350,5
+"""
+
+let level2 = """
 Size 1000,500
 Lines Box 500,0,500,200,700,200,700,0
 Lines Right 900,500,800,450,900,400,800,350,900,300,800,250,900,200,800,150,900,100,800,50
