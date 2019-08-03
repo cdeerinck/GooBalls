@@ -19,3 +19,16 @@ enum GooActivity {
     case leaving
     case left
 }
+
+extension GooActivity: Equatable {
+    static func ==(lhs: GooActivity, rhs: GooActivity) -> Bool {
+        switch (lhs, rhs) {
+        case (let .walkingOn(node1), let .walkingOn(node2)):
+            return node1==node2
+        default:
+            return lhs == rhs
+        }
+    }
+}
+
+
