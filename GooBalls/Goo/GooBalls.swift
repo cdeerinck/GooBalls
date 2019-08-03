@@ -28,6 +28,9 @@ class GooBall:SKNode {
             case .beingDragged:
                 self.isUserInteractionEnabled = true
                 self.physicsBody?.affectedByGravity = false
+            case .anchored:
+                self.isUserInteractionEnabled = false
+                self.physicsBody?.affectedByGravity = false
             case .fixed:
                 self.isUserInteractionEnabled = false
                 self.physicsBody?.affectedByGravity = true

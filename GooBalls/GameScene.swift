@@ -112,6 +112,8 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
                 //selectedGoo?.position = CGPoint(x: previousGooPosition.x + (offset.x * camera.xScale), y: previousGooPosition.y + (offset.y * camera.yScale) * -1)
                 selectedGoo?.physicsBody?.node?.position.x = previousGooPosition.x + (offset.x * camera.xScale)
                 selectedGoo?.physicsBody?.node?.position.y = previousGooPosition.y - (offset.y * camera.yScale)
+                let goos = self.children.filter({$0.name == "Goo"}) as? [GooBall]
+                let staticGoos = goos?.filter({$0.activity == .fixed || $0.activity == .anchored})
                 if sender.state == .ended {
                     selectedGoo?.activity = .free
                 }
