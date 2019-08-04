@@ -36,6 +36,7 @@ class GooBall:SKNode {
             case .anchored:
                 self.isUserInteractionEnabled = false
                 self.physicsBody?.affectedByGravity = false
+                self.physicsBody?.isDynamic = false
             case .fixed:
                 self.isUserInteractionEnabled = false
                 self.physicsBody?.affectedByGravity = true
@@ -50,9 +51,6 @@ class GooBall:SKNode {
                 self.physicsBody?.affectedByGravity = false
 //            default:
 //                self.isUserInteractionEnabled = self.isUserInteractionEnabled
-            case .anchored:
-                self.isUserInteractionEnabled = false
-                self.physicsBody?.affectedByGravity = false
             }
         }
     }

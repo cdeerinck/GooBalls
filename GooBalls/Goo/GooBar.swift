@@ -39,6 +39,8 @@ class GooBar:SKNode {
         self.name = "Bar"
         scene.addChild(self)
         let barJoint = SKPhysicsJointSpring.joint(withBodyA:oneEnd.physicsBody!, bodyB:otherEnd.physicsBody!, anchorA: oneEnd.position, anchorB: otherEnd.position)
+        barJoint.damping = 0.01
+        barJoint.frequency = 7.0
         scene.physicsWorld.add(barJoint)
     }
 

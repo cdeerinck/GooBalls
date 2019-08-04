@@ -28,6 +28,8 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
         self.view?.showsFPS = true
         self.view?.showsNodeCount = true
         self.view?.showsPhysics = true
+        self.view?.showsFields = true
+        self.scaleMode = .aspectFill
         self.camera = myCamera
         self.addChild(myCamera)
     }
@@ -118,11 +120,12 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
                 selectedGoo?.physicsBody?.node?.position.y = previousGooPosition.y - (offset.y * camera.yScale)
                 let tStaticGoo = (self.children.filter({$0.name == "Goo"}) as! [GooBall]).filter({$0.activity == .fixed || $0.activity == .anchored}).filter({distanceBetween($0, selectedGoo!) <= maxBarDistance}).sorted(by: {distanceBetween($0, selectedGoo!) < distanceBetween($1, selectedGoo!)})
                 var staticGoo:[GooBall] = []
-                if tStaticGoo.count > 2 {
+                if tStaticGoo.count >= 2 {
                     staticGoo.append(tStaticGoo[0])
                     staticGoo.append(tStaticGoo[1])
-                } else {
-                    staticGoo = tStaticGoo
+                }
+                if tStaticGoo.count < 2 {
+                    staticGoo = []
                 }
                 if sender.state == .changed {
                     for goo in staticGoo {
