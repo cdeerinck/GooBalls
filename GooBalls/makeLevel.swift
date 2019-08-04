@@ -124,8 +124,7 @@ func makeLevelFrom(in scene:SKScene, _ input:String) {
                 points.append(point)
             } while startsWith(pattern: ",", value: level)
             for point in points {
-                let goo = GooBall(scene: scene, at: point, type:gooType)
-                goo.name = "Goo"
+                let _ = GooBall(scene: scene, at: point, type:gooType)
             }
         case "Bar":
             var point1:CGPoint

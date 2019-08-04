@@ -23,6 +23,8 @@
 		13DC91CA22ECF60C0071753C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91C922ECF60C0071753C /* GameScene.swift */; };
 		13DC91CC22ECFA920071753C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC91CB22ECFA920071753C /* Strings.swift */; };
 		A36FB86722F11FD600E13DC4 /* FindParentGoo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36FB86622F11FD600E13DC4 /* FindParentGoo.swift */; };
+		A3E1BD7E22F6587F0064837B /* distanceBetween.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1BD7D22F6587F0064837B /* distanceBetween.swift */; };
+		A3E1BD8022F66BAD0064837B /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1BD7F22F66BAD0064837B /* drawLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		13DC91C922ECF60C0071753C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		13DC91CB22ECFA920071753C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		A36FB86622F11FD600E13DC4 /* FindParentGoo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindParentGoo.swift; sourceTree = "<group>"; };
+		A3E1BD7D22F6587F0064837B /* distanceBetween.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = distanceBetween.swift; sourceTree = "<group>"; };
+		A3E1BD7F22F66BAD0064837B /* drawLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				A36FB86622F11FD600E13DC4 /* FindParentGoo.swift */,
 				13DC91AC22EBFC960071753C /* ViewController.swift */,
 				13DC91C922ECF60C0071753C /* GameScene.swift */,
+				A3E1BD7F22F66BAD0064837B /* drawLine.swift */,
+				A3E1BD7D22F6587F0064837B /* distanceBetween.swift */,
 				13DC91AE22EBFC960071753C /* Main.storyboard */,
 				13DC91B122EBFC980071753C /* Assets.xcassets */,
 				13DC91B322EBFC980071753C /* LaunchScreen.storyboard */,
@@ -185,8 +191,10 @@
 				13DC91CA22ECF60C0071753C /* GameScene.swift in Sources */,
 				13DC91BF22ECE98B0071753C /* GooBar.swift in Sources */,
 				13DC91BD22EBFCAD0071753C /* GooBalls.swift in Sources */,
+				A3E1BD8022F66BAD0064837B /* drawLine.swift in Sources */,
 				13DC91C622ECEAB50071753C /* makeLevel.swift in Sources */,
 				13DC91AB22EBFC960071753C /* AppDelegate.swift in Sources */,
+				A3E1BD7E22F6587F0064837B /* distanceBetween.swift in Sources */,
 				13DC91C822ECED860071753C /* Constants.swift in Sources */,
 				A36FB86722F11FD600E13DC4 /* FindParentGoo.swift in Sources */,
 			);

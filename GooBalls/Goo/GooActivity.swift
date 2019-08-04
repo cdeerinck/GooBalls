@@ -23,10 +23,12 @@ enum GooActivity {
 extension GooActivity: Equatable {
     static func ==(lhs: GooActivity, rhs: GooActivity) -> Bool {
         switch (lhs, rhs) {
-        case (let .walkingOn(node1), let .walkingOn(node2)):
-            return node1==node2
+        case ( .walkingOn, .walkingOn):
+            return true
+        case (.sleeping,.sleeping),(.free,.free),(.beingDragged,.beingDragged),(.fixed,.fixed),(.anchored,.anchored),(.leaving,.leaving),(.left,.left):
+            return true
         default:
-            return lhs == rhs
+            return false
         }
     }
 }

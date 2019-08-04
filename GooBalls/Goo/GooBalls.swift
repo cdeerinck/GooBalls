@@ -16,6 +16,11 @@ class GooBall:SKNode {
     var rightEye:SKShapeNode = SKShapeNode()
     var rightPupil:SKShapeNode = SKShapeNode()
     var type:GooType = .normal
+    var isDraggable:Bool {
+        get {
+            return self.activity == .free || self.activity == .walkingOn(onNode: self) 
+        }
+    }
     var activity:GooActivity = .free {
         didSet {
             switch self.activity {
