@@ -12,7 +12,7 @@ import SpriteKit
 enum GooActivity {
     case sleeping
     case beingDragged
-    case free // Can move around, and effected by gravity.
+    case free (pointDestination:CGPoint?, nodeDestination:SKNode?)// Can move around, and effected by gravity.
     case fixed // Part of a structure.  Can be effected by physics, but can't move around.
     case anchored // Used in level set up.  These can't move.
     case walkingOn (onNode:SKNode)

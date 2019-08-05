@@ -37,6 +37,9 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
     
     override func didSimulatePhysics() {
         for gooBall in self.children.filter({$0.name == "Goo"}) as! [GooBall]  {
+            if gooBall.destination == nil &&  gooBall.activity == GooActivity.free(pointDestination: nil, nodeDestination: nil) {
+                gooBall.pickDestination()
+            }
             gooBall.orient()
         }
         for gooBar in self.children.filter({$0.name == "Bar"}) as! [GooBar]  {
@@ -136,7 +139,7 @@ class GameScene:SKScene, SKPhysicsContactDelegate, SKSceneDelegate {
                     for goo in staticGoo {
                         let _ = GooBar(scene: self, goo, selectedGoo!)
                     }
-                    if staticGoo.count == 0 { selectedGoo?.activity = .free }
+                    if staticGoo.count == 0 { selectedGoo?.activity = .free(pointDestination: nil, nodeDestination: nil) }
                 }
             }
         default:

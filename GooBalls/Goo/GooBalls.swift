@@ -18,10 +18,10 @@ class GooBall:SKNode {
     var type:GooType = .normal
     var isDraggable:Bool {
         get {
-            return self.activity == .free || self.activity == .walkingOn(onNode: self) 
+            return self.activity == .free(pointDestination: nil, nodeDestination: nil) || self.activity == .walkingOn(onNode: self)
         }
     }
-    var activity:GooActivity = .free {
+    var activity:GooActivity = .free(pointDestination: nil, nodeDestination: nil) {
         didSet {
             switch self.activity {
             case .free:
@@ -51,6 +51,17 @@ class GooBall:SKNode {
                 self.physicsBody?.affectedByGravity = false
 //            default:
 //                self.isUserInteractionEnabled = self.isUserInteractionEnabled
+            }
+        }
+    }
+    var destination:CGPoint? {
+        get {
+            switch self.activity {
+            case .free(let pointDestination, let nodeDestination):
+                if pointDestination != nil { return pointDestination }
+                return nodeDestination?.physicsBody?.node?.position
+            default:
+                return nil
             }
         }
     }
@@ -115,6 +126,9 @@ class GooBall:SKNode {
         shapeNode.strokeColor = gooColors.ballColor
         //shapeNode.lineWidth = 0.001
         self.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+        self.physicsBody?.categoryBitMask = gooCategory
+        self.physicsBody?.contactTestBitMask = gooContactMask
+        self.physicsBody?.collisionBitMask = gooCollisionMask
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.friction = 0.03
@@ -163,6 +177,17 @@ class GooBall:SKNode {
             self.xScale = max(0.5,1 - (speed/2000)) //get smaller based on speed.  No smaller than 0.5
             self.yScale = min(1.5,1 + (speed/2000)) //get longer based on speed.  No bigger than 1.5
         }
+        if speed < maxGooSpeed && self.activity == GooActivity.free(pointDestination: nil, nodeDestination: nil) {
+            if distanceBetween(self,self.destination!) > 10 {
+                let vector = unitVector(calcVector(point1: self.physicsBody!.node!.position, point2: self.destination!))
+            self.physicsBody?.applyImpulse(CGVector(dx: vector.dx*((maxGooSpeed  - speed)*kick), dy: vector.dy*((maxGooSpeed  - speed)*kick)))
+            } else { self.activity = .free(pointDestination: nil, nodeDestination: nil) }
+        }
         self.physicsBody?.allowsRotation = false
+    }
+    
+    func pickDestination() {
+        let tStaticGoo = (self.scene!.children.filter({$0.name == "Goo"}) as! [GooBall]).filter({$0.activity == .fixed || $0.activity == .anchored}).sorted(by: {distanceBetween($0, self) < distanceBetween($1, self)})
+        self.activity = .free(pointDestination: nil, nodeDestination: tStaticGoo[0])
     }
 }

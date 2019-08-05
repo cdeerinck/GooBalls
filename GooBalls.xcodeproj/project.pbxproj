@@ -25,6 +25,8 @@
 		A36FB86722F11FD600E13DC4 /* FindParentGoo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36FB86622F11FD600E13DC4 /* FindParentGoo.swift */; };
 		A3E1BD7E22F6587F0064837B /* distanceBetween.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1BD7D22F6587F0064837B /* distanceBetween.swift */; };
 		A3E1BD8022F66BAD0064837B /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1BD7F22F66BAD0064837B /* drawLine.swift */; };
+		A3E1BD8222F7E3C00064837B /* calcVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1BD8122F7E3C00064837B /* calcVector.swift */; };
+		A3E1BD8422F7E4F00064837B /* unitVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1BD8322F7E4F00064837B /* unitVector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		A36FB86622F11FD600E13DC4 /* FindParentGoo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindParentGoo.swift; sourceTree = "<group>"; };
 		A3E1BD7D22F6587F0064837B /* distanceBetween.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = distanceBetween.swift; sourceTree = "<group>"; };
 		A3E1BD7F22F66BAD0064837B /* drawLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
+		A3E1BD8122F7E3C00064837B /* calcVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calcVector.swift; sourceTree = "<group>"; };
+		A3E1BD8322F7E4F00064837B /* unitVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = unitVector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +91,13 @@
 				13DC91C422ECE9C60071753C /* Goo */,
 				13DC91AA22EBFC960071753C /* AppDelegate.swift */,
 				13DC91C522ECEAB50071753C /* makeLevel.swift */,
+				A3E1BD8322F7E4F00064837B /* unitVector.swift */,
 				A36FB86622F11FD600E13DC4 /* FindParentGoo.swift */,
 				13DC91AC22EBFC960071753C /* ViewController.swift */,
 				13DC91C922ECF60C0071753C /* GameScene.swift */,
 				A3E1BD7F22F66BAD0064837B /* drawLine.swift */,
 				A3E1BD7D22F6587F0064837B /* distanceBetween.swift */,
+				A3E1BD8122F7E3C00064837B /* calcVector.swift */,
 				13DC91AE22EBFC960071753C /* Main.storyboard */,
 				13DC91B122EBFC980071753C /* Assets.xcassets */,
 				13DC91B322EBFC980071753C /* LaunchScreen.storyboard */,
@@ -183,10 +189,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				13356B8F22F119240067F68B /* CGPoint.swift in Sources */,
+				A3E1BD8222F7E3C00064837B /* calcVector.swift in Sources */,
 				13DC91C122ECE9A80071753C /* GooType.swift in Sources */,
 				13DC91AD22EBFC960071753C /* ViewController.swift in Sources */,
 				13DC91CC22ECFA920071753C /* Strings.swift in Sources */,
 				13356B9122F119770067F68B /* lerp.swift in Sources */,
+				A3E1BD8422F7E4F00064837B /* unitVector.swift in Sources */,
 				13DC91C322ECE9B90071753C /* GooActivity.swift in Sources */,
 				13DC91CA22ECF60C0071753C /* GameScene.swift in Sources */,
 				13DC91BF22ECE98B0071753C /* GooBar.swift in Sources */,

@@ -10,10 +10,10 @@ import Foundation
 import SpriteKit
 
 //Physics Categories
-let gooCategory = 0x0001
-let barCategory = 0x0002
-let groundCategory = 0x0004
-let thingsCategory = 0x0008
+let gooCategory:UInt32 = 0x0001
+let barCategory:UInt32 = 0x0002
+let groundCategory:UInt32 = 0x0004
+let thingsCategory:UInt32 = 0x0008
 
 //Contact Masks
 let gooContactMask = barCategory & groundCategory
@@ -24,5 +24,7 @@ let gooCollisionMask = groundCategory
 let barCollisionMask = groundCategory
 let groundCollisionMask = gooCategory & groundCategory
 
-var maxSpeed:CGFloat = 0
+var maxGooSpeed:CGFloat = 200
+var kick:CGFloat = 0.01
+
 var maxBarDistance:CGFloat = 100

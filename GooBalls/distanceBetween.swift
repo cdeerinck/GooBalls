@@ -12,3 +12,7 @@ import SpriteKit
 func distanceBetween(_ node1:SKNode, _ node2:SKNode) -> CGFloat {
     return hypot(node1.physicsBody!.node!.position.x - node2.physicsBody!.node!.position.x, node1.physicsBody!.node!.position.y - node2.physicsBody!.node!.position.y)
 }
+
+func distanceBetween(_ node:SKNode, _ point:CGPoint) -> CGFloat {
+    return hypot(node.physicsBody!.node!.position.x - point.x, node.physicsBody!.node!.position.y - point.y)
+}
