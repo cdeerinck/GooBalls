@@ -57,7 +57,7 @@ class GooBall:SKNode {
     var boundTo:[GooBall] = []
     var bars:[GooBar] = []
     var interestedIn: CGPoint?
-    var gooSize:CGFloat = 1.0
+    var gooSize:CGFloat = 12.0
 
     init? (in scene:SKScene, at:CGPoint, type:GooType = .normal) {
         super.init()

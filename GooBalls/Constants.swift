@@ -26,3 +26,5 @@ let groundCollisionMask = gooCategory & groundCategory
 
 var maxSpeed:CGFloat = 0
 var maxBarDistance:CGFloat = 100
+
+let piOver2:CGFloat = CGFloat.pi / 2
