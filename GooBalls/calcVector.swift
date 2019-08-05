@@ -11,4 +11,5 @@ import SpriteKit
 
 func calcVector(point1:CGPoint, point2:CGPoint) -> CGVector {
     return CGVector(dx: point2.x-point1.x, dy: point2.y-point1.y)
+    
 }

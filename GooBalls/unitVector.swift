@@ -9,7 +9,9 @@
 import Foundation
 import SpriteKit
 
+// calculates the unit vector for the given vector
 func unitVector(_ vector:CGVector) -> CGVector {
     let divisor = hypot(vector.dx, vector.dy)
     return CGVector(dx: vector.dx/divisor, dy: vector.dy/divisor)
+    
 }
