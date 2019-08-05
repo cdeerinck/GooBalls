@@ -28,3 +28,5 @@ var maxGooSpeed:CGFloat = 200
 var kick:CGFloat = 0.01
 
 var maxBarDistance:CGFloat = 100
+
+let piOver2:CGFloat = CGFloat.pi / 2
